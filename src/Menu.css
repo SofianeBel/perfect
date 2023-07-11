@@ -1,0 +1,10 @@
+.menu {
+  /* Styles pour le menu fermé */
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.menu.menu-open {
+  /* Styles pour le menu ouvert */
+  transform: translateX(0);
+}
