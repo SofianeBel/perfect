@@ -1,3 +1,51 @@
+.homepage {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+header {
+  text-align: center;
+}
+
+h1 {
+  font-size: 32px;
+  color: #333;
+}
+
+main {
+  margin-top: 20px;
+}
+
+section {
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 24px;
+  color: #333;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  padding: 5px 0;
+}
+
+p {
+  margin: 0;
+}
+
+footer {
+  margin-top: 20px;
+  text-align: center;
+  color: #999;
+  font-size: 14px;
+}
 .hacking-animation {
   position: relative;
 }

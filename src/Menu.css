@@ -1,10 +1,35 @@
-.menu {
-  /* Styles pour le menu fermé */
-  transform: translateX(-100%);
-  transition: transform 0.3s ease;
+.dropdown-menu {
+  position: relative;
 }
 
-.menu.menu-open {
-  /* Styles pour le menu ouvert */
-  transform: translateX(0);
+button {
+  background: #7b6b6b;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.menu-items {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #7b6b6b;
+  width: 200px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-items li {
+  padding: 10px;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+.menu-items li:hover {
+  background: #ccc;
 }

@@ -1,26 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import "../Menu.css";
 
-const Menu = () => {
+const DropdownMenu = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const handleMenuToggle = () => {
+  const handleToggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   return (
-    <nav className={`menu ${isMenuOpen ? 'menu-open' : ''}`}>
-      <button className="menu-toggle" onClick={handleMenuToggle}>
-        Toggle Menu
-      </button>
-      {<ul>
-              <li><a href="/">Accueil</a></li>
-              <li><a href="../Pages/About.jsx">À propos</a></li>
-              <li><a href="/services">Projects</a></li>
-              <li><a href="/contact">Contact</a></li>
-            </ul> }
-    </nav>
+    <div className="dropdown-menu">
+      <button onClick={handleToggleMenu}>Toggle Menu</button>
+      {isMenuOpen && (
+        <ul className="menu-items">
+          <li>Item 1</li>
+          <li>Item 2</li>
+          <li>Item 3</li>
+        </ul>
+      )}
+    </div>
   );
 };
 
-export default Menu;
-
+export default DropdownMenu;
