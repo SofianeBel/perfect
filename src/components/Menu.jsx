@@ -11,21 +11,27 @@ const DropdownMenu = () => {
 
   return (
     <div className="dropdown-menu">
-      <button onClick={handleToggleMenu}>Toggle Menu</button>
-      {isMenuOpen && (
-        <ul className="menu-items">
-          <li>
-            <NavLink to="/">Acceuil</NavLink>
-          </li>
-          <li>
-            <NavLink to="/about">À propos de moi</NavLink>
-          </li>
-          {/* Ajoutez d'autres liens si nécessaire */}
-          <li>
-            <NavLink to="/PrayersTime">Prayer Times</NavLink>
-          </li>
-        </ul>
-      )}
+      <button className="toggle-button" onClick={handleToggleMenu}>
+        Open
+      </button>
+      <ul className={`menu-items ${isMenuOpen ? "open" : ""}`}>
+        <li className="menu-item">
+          <NavLink exact to="/" activeClassName="active">
+            Accueil
+          </NavLink>
+        </li>
+        <li className="menu-item">
+          <NavLink to="/about" activeClassName="active">
+            À propos de moi
+          </NavLink>
+        </li>
+        <li className="menu-item">
+          <NavLink to="/PrayersTime" activeClassName="active">
+            Prayer Times
+          </NavLink>
+        </li>
+      </ul>
+      
     </div>
   );
 };

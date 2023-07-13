@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "./PrayerTimesStyle.css";
 import {
   Box,
   Table,
@@ -80,34 +81,45 @@ const PrayerTimesTable = () => {
   return (
     <>
       <Menu />
-      <Box>
+      <Box className="box">
         <DatePicker
+          className="date-picker"
           selected={selectedDate}
           onChange={(date) => setSelectedDate(date)}
         />
         {prayerTimes ? (
-          <TableContainer>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell>Prière</TableCell>
-                  <TableCell align="right">Heure</TableCell>
+          <TableContainer className="table-container">
+            <Table className="table">
+              <TableHead className="table-head">
+                <TableRow className="table-row">
+                  <TableCell className="table-cell">Prière</TableCell>
+                  <TableCell className="table-cell" align="right">
+                    Heure
+                  </TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 {Object.entries(prayerTimes).map(([prayer, time]) => (
-                  <TableRow key={prayer}>
-                    <TableCell component="th" scope="row">
+                  <TableRow className="table-row" key={prayer}>
+                    <TableCell
+                      className="table-cell"
+                      component="th"
+                      scope="row"
+                    >
                       {prayer}
                     </TableCell>
-                    <TableCell align="right">{time}</TableCell>
+                    <TableCell className="table-cell" align="right">
+                      {time}
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
             </Table>
           </TableContainer>
         ) : (
-          <p>Chargement des horaires des prières...</p>
+          <p className="loading-message">
+            Chargement des horaires des prières...
+          </p>
         )}
       </Box>
     </>

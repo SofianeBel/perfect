@@ -1,8 +1,5 @@
 import React from "react";
 import Menu from "../components/Menu";
-import PrayerTimesTable from "../components/PrayerTimes";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import AboutPage from "./About";
 import "../App.css";
 
 const HomePage = () => {
