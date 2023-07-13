@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 import "../Menu.css";
 
 const DropdownMenu = () => {
@@ -13,9 +14,16 @@ const DropdownMenu = () => {
       <button onClick={handleToggleMenu}>Toggle Menu</button>
       {isMenuOpen && (
         <ul className="menu-items">
-          <li>Item 1</li>
-          <li>Item 2</li>
-          <li>Item 3</li>
+          <li>
+            <NavLink to="/">Acceuil</NavLink>
+          </li>
+          <li>
+            <NavLink to="/about">À propos de moi</NavLink>
+          </li>
+          {/* Ajoutez d'autres liens si nécessaire */}
+          <li>
+            <NavLink to="/PrayersTime">Prayer Times</NavLink>
+          </li>
         </ul>
       )}
     </div>
