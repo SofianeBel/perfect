@@ -8,25 +8,25 @@ const WeatherApp = () => {
   const [weatherData, setWeatherData] = useState(null);
   const API_KEY = "38bfda8f2d7ed069d76b0fbf680d8798";
 
+  
+
   useEffect(() => {
-    getCurrentLocation();
+    const getCurrentLocation = () => {
+        navigator.geolocation.getCurrentPosition(
+          function (position) {
+            const { latitude, longitude } = position.coords;
+            getWeatherData(latitude, longitude);
+          },
+          function (error) {
+            console.log(error);
+          }
+        );
+      };;
     const interval = setInterval(getCurrentLocation, 10000); // Appel à getCurrentLocation toutes les 10 secondes
     return () => {
       clearInterval(interval); // Nettoyage de l'intervalle lors du démontage du composant
     };
   }, []);
-
-  const getCurrentLocation = () => {
-    navigator.geolocation.getCurrentPosition(
-      function (position) {
-        const { latitude, longitude } = position.coords;
-        getWeatherData(latitude, longitude);
-      },
-      function (error) {
-        console.log(error);
-      }
-    );
-  };
 
   const getWeatherData = async (latitude, longitude) => {
     try {
@@ -72,7 +72,7 @@ const WeatherApp = () => {
               </div>
               <div>Pressure: {weatherData.main.pressure} hPa</div>
               <div>Humidity: {weatherData.main.humidity}%</div>
-              <div>Wind Speed: {weatherData.wind.speed*3.6} km/h</div>
+              <div>Wind Speed: {weatherData.wind.speed * 3.6} km/h</div>
             </div>
           </div>
         )}
