@@ -30,6 +30,16 @@ const DropdownMenu = () => {
             Prayer Times
           </NavLink>
         </li>
+        <li className="menu-item">
+          <NavLink to="/To_Do_List" activeClassName="active">
+            My to do list
+          </NavLink>
+        </li>
+        <li className="menu-item">
+          <NavLink to="/WheaterApp" activeClassName="active">
+            Wheater App
+          </NavLink>
+        </li>
       </ul>
       
     </div>

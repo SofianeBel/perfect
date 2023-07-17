@@ -2,6 +2,7 @@
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
+  background-color: rgb(251, 251, 240);
 }
 
 header {
@@ -15,6 +16,7 @@ h1 {
 
 main {
   margin-top: 20px;
+  background-color:rgb(251, 251, 240);
 }
 
 section {
