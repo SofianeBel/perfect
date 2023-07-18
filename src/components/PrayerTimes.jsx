@@ -8,11 +8,14 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  TextField,
 } from "@mui/material";
 import { Coordinates, CalculationMethod, PrayerTimes } from "adhan";
 import moment from "moment-timezone";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import { LocalizationProvider } from "@mui/lab";
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import DatePicker from "@mui/lab/DatePicker";
+import frLocale from "date-fns/locale/fr";
 import Menu from "../components/Menu";
 
 const PrayerTimesTable = () => {
@@ -42,11 +45,11 @@ const PrayerTimesTable = () => {
         }
       });
     };
+
     const fetchPrayerTimes = async () => {
       try {
         const { latitude, longitude } = await getCurrentPosition();
 
-        // Utiliser selectedDate au lieu de currentDate
         const prayerTimes = new PrayerTimes(
           new Coordinates(parseFloat(latitude), parseFloat(longitude)),
           selectedDate,
@@ -81,12 +84,47 @@ const PrayerTimesTable = () => {
   return (
     <>
       <Menu />
+      <h1 className="title">Prayer Times</h1>
+      <p className="description">
+        Les horaires des prières sont calculés en fonction de votre position
+        géographique.
+      </p>
+      <p className="description">
+        Pour cela, vous devez autoriser la géolocalisation dans votre navigateur
+        et sélectionner une date.
+      </p>
+      <p className="description">
+        Les horaires des prières sont calculés en fonction de la méthode de
+        calcul de la Ligue Islamique Mondiale.
+      </p>
+      <p className="description">
+        Pour plus d'informations, veuillez consulter le site{" "}
+        <a
+          className="link"
+          href="https://aladhan.com/prayer-times-api"
+          target="_blank"
+          rel="noreferrer"
+        >
+          AlAdhan.com
+        </a>
+      </p>
+
       <Box className="box">
-        <DatePicker
-          className="date-picker"
-          selected={selectedDate}
-          onChange={(date) => setSelectedDate(date)}
-        />
+        <LocalizationProvider dateAdapter={AdapterDateFns} locale={frLocale}>
+          <DatePicker
+            className="date-picker"
+            label="Sélectionner une date"
+            value={selectedDate}
+            onChange={(date) => setSelectedDate(date)}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                className="date-picker"
+                variant="standard"
+              />
+            )}
+          />
+        </LocalizationProvider>
         {prayerTimes ? (
           <TableContainer className="table-container">
             <Table className="table">

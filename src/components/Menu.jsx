@@ -40,6 +40,11 @@ const DropdownMenu = () => {
             Wheater App
           </NavLink>
         </li>
+        <li className="menu-item">
+          <NavLink to="/TwoBro" activeClassName="active">
+            Les deux frères
+          </NavLink>
+        </li>
       </ul>
       
     </div>

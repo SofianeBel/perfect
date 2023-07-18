@@ -5,6 +5,7 @@ import AboutPage from "./About";
 import PrayerTimesTable from "../components/PrayerTimes";
 import ToDoList from "../components/ToDoList";
 import WheaterApp from "../components/WheaterApp";
+import Twobro from "./TwoBro";
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Route path="/PrayersTime" element={<PrayerTimesTable />} />
         <Route path="/To_Do_List" element={<ToDoList />} />
         <Route path="/WheaterApp" element={<WheaterApp />} />
+        <Route path="/TwoBro" element={<Twobro />} />
       </Routes>
     </BrowserRouter>
   );

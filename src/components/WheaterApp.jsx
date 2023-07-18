@@ -22,7 +22,7 @@ const WeatherApp = () => {
           }
         );
       };;
-    const interval = setInterval(getCurrentLocation, 10000); // Appel à getCurrentLocation toutes les 10 secondes
+    const interval = setInterval(getCurrentLocation, 2500); // Appel à getCurrentLocation toutes les 10 secondes
     return () => {
       clearInterval(interval); // Nettoyage de l'intervalle lors du démontage du composant
     };
