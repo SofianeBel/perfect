@@ -5,7 +5,7 @@
     padding: 0;
     flex: auto;
     flex-direction: column;
-    background-image: url("C:/Users/sifly/OneDrive/Documents/Coding/perfect/src/images/TwoBro.jpeg");
+    background-image: url("./src/images/TwoBro.jpeg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -13,7 +13,7 @@
     color: #000000;
     min-height: 100vh;
   }
-  
+
   .container {
     max-width: 800px;
     margin: 0 auto;
