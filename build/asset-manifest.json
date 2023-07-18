@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.66be8af5.css",
+    "main.js": "/static/js/main.e9e67194.js",
+    "static/js/787.5ebecb5d.chunk.js": "/static/js/787.5ebecb5d.chunk.js",
+    "static/media/TwoBro.jpeg": "/static/media/TwoBro.efc0691f71100a1c1e65.jpeg",
+    "index.html": "/index.html",
+    "main.66be8af5.css.map": "/static/css/main.66be8af5.css.map",
+    "main.e9e67194.js.map": "/static/js/main.e9e67194.js.map",
+    "787.5ebecb5d.chunk.js.map": "/static/js/787.5ebecb5d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.66be8af5.css",
+    "static/js/main.e9e67194.js"
+  ]
+}
