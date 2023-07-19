@@ -22,8 +22,8 @@ const HomePage = () => {
         "Self-learning",
         "Bienvenue sur mon site web."
       ],
-      typeSpeed: 50,
-      backSpeed: 100,
+      typeSpeed: 25,
+      backSpeed: 25,
       loop: true,
       showCursor: true,
       cursorChar: "|",
