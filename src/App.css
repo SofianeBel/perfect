@@ -1,72 +1,96 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
 .homepage {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: rgb(251, 251, 240);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 header {
+  height: 100px;
+  background-color: #fff;
+  color: #000;
+  font-size: 3em;
   text-align: center;
-}
-
-h1 {
-  font-size: 32px;
-  color: #333;
 }
 
 main {
-  margin-top: 20px;
-  background-color:rgb(251, 251, 240);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 section {
-  margin-bottom: 20px;
-}
-
-h2 {
-  font-size: 24px;
-  color: #333;
+  margin: 10px;
 }
 
 ul {
-  list-style: none;
-  padding: 0;
+  list-style-type: none;
   margin: 0;
+  padding: 0;
 }
 
 li {
-  padding: 5px 0;
+  margin: 5px;
 }
 
 p {
-  margin: 0;
+  margin: 5px;
 }
 
 footer {
-  margin-top: 20px;
+  height: 100px;
+  background-color: #000;
+  color: #fff;
+  font-size: 1em;
   text-align: center;
-  color: #999;
-  font-size: 14px;
-}
-.hacking-animation {
-  position: relative;
 }
 
-.hacked {
-  animation: hackingAnimation 2s linear infinite;
+.project {
+  margin: 10px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
-@keyframes hackingAnimation {
-  0% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  50% {
-    opacity: 0;
-    transform: translateX(-10px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
+.project-title {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.project-description {
+  font-size: 1em;
+  line-height: 1.5em;
+}
+
+.project-image {
+  margin: 10px 0;
+  max-width: 100%;
+}
+
+.contact {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-info {
+  font-size: 1em;
+  line-height: 1.5em;
+}
+
+.contact-button {
+  background-color: #000;
+  color: #fff;
+  font-size: 1em;
+  font-weight: bold;
+  padding: 10px;
+  border: 0;
+  cursor: pointer;
 }

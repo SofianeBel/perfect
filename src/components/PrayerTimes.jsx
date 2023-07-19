@@ -12,9 +12,9 @@ import {
 } from "@mui/material";
 import { Coordinates, CalculationMethod, PrayerTimes } from "adhan";
 import moment from "moment-timezone";
-import { LocalizationProvider } from "@mui/lab";
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import DatePicker from "@mui/lab/DatePicker";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import frLocale from "date-fns/locale/fr";
 import Menu from "../components/Menu";
 
