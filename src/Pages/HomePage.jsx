@@ -1,43 +1,80 @@
 import React, { useState, useEffect, useRef } from "react";
-import Typed from "typed.js";
 import Menu from "../components/Menu";
 import "../App.css";
 
 //
 const HomePage = () => {
-  const [typed, setTyped] = useState(null);
-  const typedRef = useRef(null);
+  // Déclare une nouvelle variable d'état, qu’on va appeler « count »
+  const [count, setCount] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [wordIndex, setWordIndex] = useState(0);
+  const [text, setText] = useState("");
+  const [isEnd, setIsEnd] = useState(false);
+  const words = [
+    "Etudiant en informatique.",
+    "Passionné",
+    "Déterminé",
+    "Rockstar Games Fan",
+    "ReactJS",
+    "C#",
+    "JavaScript",
+    "C++",
+    "Self-learning",
+    "Bienvenue sur mon site web.",
+  ];
+  const typingSpeed = 150;
+  const deletingSpeed = 50;
+  const nextWordDelay = 150;
+  const textRef = useRef(null);
 
   useEffect(() => {
-    const options = {
-      strings: [
-        "Etudiant en informatique.",
-        "Passionné",
-        "Déterminé",
-        "Rockstar Games Fan",
-        "ReactJS",
-        "C#",
-        "JavaScript",
-        "C++",
-        "Self-learning",
-        "Bienvenue sur mon site web."
-      ],
-      typeSpeed: 25,
-      backSpeed: 25,
-      loop: true,
-      showCursor: true,
-      cursorChar: "|",
-      smartBackspace: true,
+    // rajoute un curseur clignotant | à la fin du texte
+    const current = wordIndex % words.length;
+    const fullText = words[current];
+    if (isEnd) {
+      textRef.current.classList.add("cursor");
+    } else {
+      textRef.current.classList.remove("cursor");
+    }
+  }, [isEnd, wordIndex, words]);
+
+  useEffect(() => {
+    const handleType = () => {
+      const current = wordIndex % words.length;
+      const fullText = words[current];
+
+      if (isDeleting) {
+        setText(fullText.substring(0, text.length - 1));
+      } else {
+        setText(fullText.substring(0, text.length + 1));
+      }
+
+      if (!isDeleting && text === fullText) {
+        setTimeout(() => setIsDeleting(true), nextWordDelay);
+      } else if (isDeleting && text === "") {
+        setIsDeleting(false);
+        setWordIndex(wordIndex + 1);
+      }
     };
 
-    typedRef.current = new Typed(".typed", options);
-    setTyped(typedRef.current);
-    return () => {
-      // Nettoyez la référence de Typed.js lors de la désactivation du composant
-      typedRef.current.destroy();
-    };
+    const typeTimer = setTimeout(
+      handleType,
+      isDeleting ? deletingSpeed : typingSpeed
+    );
+    return () => clearTimeout(typeTimer);
+  }, [text, isDeleting, wordIndex, words]);
+
+  useEffect(() => {
+    if (text === "") {
+      setIsEnd(true);
+    } else {
+      setIsEnd(false);
+    }
+  }, [text]);
+
+  useEffect(() => {
+    textRef.current.focus();
   }, []);
-
   return (
     <>
       {/* Affiche le composant Menu. */}
@@ -48,9 +85,7 @@ const HomePage = () => {
         {/* // Affiche un en-tête. */}
         <header className="header">
           <h1>Sofiane's World</h1>
-          <p>
-            <span className="typed"></span>
-          </p>
+          <p ref={textRef} className="cursor">{text}{isEnd ? "" : "|"}</p>
         </header>
         {/* // Affiche un contenu principal. */}
         <main className="main">
