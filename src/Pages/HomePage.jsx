@@ -1,16 +1,16 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import Menu from "../components/Menu";
 import "../App.css";
 
 //
 const HomePage = () => {
   // Déclare une nouvelle variable d'état, qu’on va appeler « count »
-  const [count, setCount] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [wordIndex, setWordIndex] = useState(0);
   const [text, setText] = useState("");
   const [isEnd, setIsEnd] = useState(false);
-  const words = [
+
+  const words = useMemo(() => [
     "Etudiant en informatique.",
     "Passionné",
     "Déterminé",
@@ -21,7 +21,7 @@ const HomePage = () => {
     "C++",
     "Self-learning",
     "Bienvenue sur mon site web.",
-  ];
+  ], []);
   const typingSpeed = 150;
   const deletingSpeed = 50;
   const nextWordDelay = 150;
@@ -85,7 +85,10 @@ const HomePage = () => {
         {/* // Affiche un en-tête. */}
         <header className="header">
           <h1>Sofiane's World</h1>
-          <p ref={textRef} className="cursor">{text}{isEnd ? "" : "|"}</p>
+          <p ref={textRef} className="cursor">
+            {text}
+            {isEnd ? "" : "|"}
+          </p>
         </header>
         {/* // Affiche un contenu principal. */}
         <main className="main">
