@@ -26,11 +26,13 @@ const HomePage = () => {
   const deletingSpeed = 50;
   const nextWordDelay = 150;
   const textRef = useRef(null);
+  
 
   useEffect(() => {
     // rajoute un curseur clignotant | à la fin du texte
     const current = wordIndex % words.length;
     const fullText = words[current];
+    console.log(fullText);
     if (isEnd) {
       textRef.current.classList.add("cursor");
     } else {
