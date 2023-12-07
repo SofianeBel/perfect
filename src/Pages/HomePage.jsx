@@ -31,7 +31,6 @@ const HomePage = () => {
   const textRef = useRef(null);
 
   useEffect(() => {
-    const current = wordIndex % words.length;
 
     if (isEnd) {
       textRef.current.classList.add("cursor");
@@ -92,7 +91,7 @@ const HomePage = () => {
         </header>
         <main className="main">
           <div className="Presentation">
-            <img src="https://img.icons8.com/ios/50/000000/marker.png" />
+            <img src="https://img.icons8.com/ios/50/000000/marker.png" alt="jjj" />
             <p>Paris, France</p>
             <div className="moi">
               <p>
