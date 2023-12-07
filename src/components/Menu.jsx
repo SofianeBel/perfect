@@ -45,8 +45,12 @@ const DropdownMenu = () => {
             Les deux frères
           </NavLink>
         </li>
+        <li className="menu-item">
+          <NavLink to="/FuelPrice" activeClassName="active">
+            Prix Essence
+          </NavLink>
+          </li>
       </ul>
-      
     </div>
   );
 };

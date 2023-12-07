@@ -103,8 +103,7 @@ const PrayerTimesTable = () => {
           className="link"
           href="https://aladhan.com/prayer-times-api"
           target="_blank"
-          rel="noreferrer"
-        >
+          rel="noreferrer">
           AlAdhan.com
         </a>
       </p>
@@ -142,8 +141,7 @@ const PrayerTimesTable = () => {
                     <TableCell
                       className="table-cell"
                       component="th"
-                      scope="row"
-                    >
+                      scope="row">
                       {prayer}
                     </TableCell>
                     <TableCell className="table-cell" align="right">
