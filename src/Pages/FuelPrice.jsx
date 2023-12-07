@@ -51,7 +51,7 @@ const FuelPrice = () => {
                         latitude: position.coords.latitude,
                         longitude: position.coords.longitude,
                     });
-                    getFuelPrice();
+                    
                 },
                 (error) => {
                     console.log(error);
@@ -61,12 +61,13 @@ const FuelPrice = () => {
             console.log("Geolocation is not supported by this browser.");
         }
 
+        console.log(userLocation)
         // intervalle
-        const interval = setInterval(() => {
-            getFuelPrice();
-        }, 1000);
+        // const interval = setInterval(() => {
+        //     getFuelPrice();
+        // }, 1000);
 
-        return () => clearInterval(interval);
+        // return () => clearInterval(interval);
     }, []);
 
     // Effect hook pour calculer les stations les plus proches en fonction du carburant sélectionné et de la géolocalisation de l'utilisateur
@@ -75,12 +76,12 @@ const FuelPrice = () => {
         if (userLocation) {
             const calculateDistance = (lat1, lon1, lat2, lon2) => {
                 const R = 6371; // Rayon de la Terre en km
-                const dLat = deg2rad(lat2 - lat1); // Conversion degrés en radians
-                const dLon = deg2rad(lon2 - lon1);
+                const dLat = lat2 - lat1; // Conversion degrés en radians
+                const dLon = lon2 - lon1;
                 const a =
                     Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-                    Math.cos(deg2rad(lat1)) *
-                        Math.cos(deg2rad(lat2)) *
+                    Math.cos(lat1) *
+                        Math.cos(lat2) *
                         Math.sin(dLon / 2) *
                         Math.sin(dLon / 2);
                 const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
@@ -88,9 +89,9 @@ const FuelPrice = () => {
                 return d;
             };
 
-            const deg2rad = (deg) => {
-                return deg * (Math.PI / 180);
-            };
+            // const deg2rad = (deg) => {
+            //     return deg * (Math.PI / 180);
+            // };
 
             const nearestStations = jsonData
                 .filter(
@@ -105,9 +106,10 @@ const FuelPrice = () => {
                     const distance = calculateDistance(
                         userLocation.latitude,
                         userLocation.longitude,
-                        item.latitude,
-                        item.longitude
+                        item.geom.lat,
+                        item.geom.lon,
                     );
+                    console.log(item.geom.lat, item.geom.lon)
                     return {
                         id: item.id,
                         adresse: item.adresse,
@@ -132,19 +134,17 @@ const FuelPrice = () => {
                     }
                     return 0;
                 })
-                .slice(0, 20);
+                .slice(0, 20); // Garder les 20 stations les plus proches
 
             setNearestStations(nearestStations);
         }
     }, [userLocation, jsonData, sortByPriceAsc, sortByDistanceAsc]);
+
+    // Fonction pour réinitialiser les états de triage
     const resetSorting = () => {
         setSortByPriceAsc(true);
         setSortByDistanceAsc(true);
     };
-
-    // Utilisez la fonction resetSorting où vous souhaitez réinitialiser les états de triage
-
-
 
     // Fonction pour obtenir le type de carburant en fonction de la valeur sélectionnée
     const getFuelType = () => {
@@ -199,6 +199,9 @@ const FuelPrice = () => {
                     </FormControl>
                 </Grid>
                 <Grid item>
+                    <Button variant="contained" onClick={resetSorting}>
+                        Réinitialiser
+                    </Button>
                     <TableContainer component={Paper}>
                         <Table>
                             <TableHead>
@@ -228,19 +231,21 @@ const FuelPrice = () => {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {nearestStations.map((item) => (
-                                    <TableRow key={item.id}>
-                                        <TableCell>{item.adresse}</TableCell>
-                                        <TableCell>{getFuelType()}</TableCell>
-                                        <TableCell>{item.prix}</TableCell>
-                                        <TableCell>{item.distance.toFixed(2)} km</TableCell>
-                                    </TableRow>
-                                ))}
+                                {nearestStations
+                                    .map((item) => (
+                                        <TableRow key={item.id}>
+                                            <TableCell>{item.adresse}</TableCell>
+                                            <TableCell>{getFuelType()}</TableCell>
+                                            <TableCell>{item.prix}</TableCell>
+                                            <TableCell>{item.distance.toFixed(2)} km</TableCell>
+                                        </TableRow>
+                                    ))}
                             </TableBody>
                         </Table>
                     </TableContainer>
                 </Grid>
             </Grid>
+            
         </div>
     );
 };
