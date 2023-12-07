@@ -32,7 +32,6 @@ const HomePage = () => {
 
   useEffect(() => {
     const current = wordIndex % words.length;
-    const fullText = words[current];
 
     if (isEnd) {
       textRef.current.classList.add("cursor");

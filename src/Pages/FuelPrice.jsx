@@ -68,7 +68,7 @@ const FuelPrice = () => {
         // }, 1000);
 
         // return () => clearInterval(interval);
-    }, []);
+    }, [userLocation]);
 
     // Effect hook pour calculer les stations les plus proches en fonction du carburant sélectionné et de la géolocalisation de l'utilisateur
     useEffect(() => {
@@ -138,7 +138,7 @@ const FuelPrice = () => {
 
             setNearestStations(nearestStations);
         }
-    }, [userLocation, jsonData, sortByPriceAsc, sortByDistanceAsc]);
+    }, [userLocation, jsonData, sortByPriceAsc, sortByDistanceAsc,getFuelType]);
 
     // Fonction pour réinitialiser les états de triage
     const resetSorting = () => {
