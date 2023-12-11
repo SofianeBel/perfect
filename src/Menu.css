@@ -1,30 +1,51 @@
-/* Importer la police Google Roboto */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+/* Police et style global */
 
-/* Appliquer les styles modernes */
-.dropdown-menu {
-  position: relative;
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-.toggle-button {
+/* Style du menu */
+
+.menu {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em 2em;
+  background-color: #2f353b;
+  color: #fff;
+}
+
+.menu-button {
   background-color: transparent;
   border: none;
-  color: #333;
-  font-size: 16px;
   cursor: pointer;
+  padding: 0.5em 1em;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  color: inherit;
+}
+
+.menu-button span {
+  margin-right: 5px;
+}
+
+.menu-button svg {
+  transition: transform 0.2s ease-in-out;
+}
+
+.menu-button.open svg {
+  transform: rotate(180deg);
 }
 
 .menu-items {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: #fff;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 8px 0;
   list-style: none;
+  padding: 0;
   margin: 0;
   display: none;
+  background-color: #2f353b;
+  color: #fff;
 }
 
 .menu-items.open {
@@ -32,20 +53,21 @@
 }
 
 .menu-item {
-  padding: 8px 16px;
+  padding: 0.5em 1em;
 }
 
 .menu-item a {
   text-decoration: none;
-  color: #333;
-  font-size: 14px;
+  color: inherit;
+  display: block;
+  padding: 0.5em 1em;
+  transition: background-color 0.2s ease-in-out;
 }
 
 .menu-item a:hover {
-  color: #666;
+  background-color: #393e42;
 }
 
-.menu-item.active {
-  background-color: #f5f5f5;
+.menu-item.active a {
+  background-color: #494e52;
 }
-

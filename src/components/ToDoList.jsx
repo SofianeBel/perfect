@@ -10,12 +10,14 @@ import {
 import axios from "axios";
 import "./ToDoStyle.css";
 import Menu from "./Menu";
+import { useCookies } from "react-cookie";
 
 const TodoList = () => {
   const [tasks, setTasks] = useState([]);
   const [taskInput, setTaskInput] = useState("");
   const [isAddingTask, setIsAddingTask] = useState(false);
   const ref = useRef();
+  const [cookies, setCookie] = useCookies(["tasks"]);
 
   const handleTaskInputChange = (event) => {
     setTaskInput(event.target.value);
@@ -54,15 +56,15 @@ const TodoList = () => {
   };
 
   useEffect(() => {
-    const storedTasks = localStorage.getItem("tasks");
+    const storedTasks = cookies.tasks;
     if (storedTasks) {
-      setTasks(JSON.parse(storedTasks));
+      setTasks(storedTasks);
     }
-  }, []);
+  }, [cookies.tasks]);
 
   useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  }, [tasks]);
+    setCookie("tasks", tasks, { path: "/" });
+  }, [tasks,setCookie]);
 
   useEffect(() => {
     ref.current = tasks;

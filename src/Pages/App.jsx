@@ -7,6 +7,7 @@ import ToDoList from "../components/ToDoList";
 import WheaterApp from "../components/WheaterApp";
 import Twobro from "./TwoBro";
 import FuelPrice from "./FuelPrice";
+import Projects from "./projects";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="/WheaterApp" element={<WheaterApp />} />
         <Route path="/TwoBro" element={<Twobro />} />
         <Route path="/FuelPrice" element={<FuelPrice />} />
+        <Route path="/Projects" element={<Projects />} />
       </Routes>
     </BrowserRouter>
   );

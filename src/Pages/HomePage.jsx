@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
-import Menu from "../components/Menu";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import TwitterIcon from "@mui/icons-material/Twitter";
+import { motion } from "framer-motion";
 import "../App.css";
+import Menu from "../components/Menu.jsx";
 
-const HomePage = () => {
+function HomePage() {
   const [isDeleting, setIsDeleting] = useState(false);
   const [wordIndex, setWordIndex] = useState(0);
   const [text, setText] = useState("");
@@ -12,6 +11,7 @@ const HomePage = () => {
 
   const words = useMemo(
     () => [
+      "Bienvenue sur mon portfolio.",
       "Etudiant en informatique.",
       "Passionné",
       "Déterminé",
@@ -31,7 +31,6 @@ const HomePage = () => {
   const textRef = useRef(null);
 
   useEffect(() => {
-
     if (isEnd) {
       textRef.current.classList.add("cursor");
     } else {
@@ -43,7 +42,6 @@ const HomePage = () => {
     const handleType = () => {
       const current = wordIndex % words.length;
       const fullText = words[current];
-
       if (isDeleting) {
         setText(fullText.substring(0, text.length - 1));
       } else {
@@ -79,92 +77,114 @@ const HomePage = () => {
 
   return (
     <>
-      <Menu />
-
-      <div className="container">
-        <header className="header">
-          <h1>Sofiane's World</h1>
-          <p ref={textRef} className="cursor">
-            {text}
-            {isEnd ? "" : "|"}
-          </p>
-        </header>
-        <main className="main">
-          <div className="Presentation">
-            <img src="https://img.icons8.com/ios/50/000000/marker.png" alt="jjj" />
-            <p>Paris, France</p>
-            <div className="moi">
-              <p>
-                Je suis Sofiane et je suis passionné par l'informatique. J'ai 20
-                ans et j'ai acquis une expérience dans la programmation notamment
-                avec plusieurs stages. Je suis fier d'une fonctionnalité que
-                j'ai développée pour le Crédit Agricole Assurance durant mon
-                stage de 1ère année de BTS SNIR. Je suis constamment à la
-                recherche de nouvelles opportunités pour gagner en expérience et
-                pouvoir travailler dans ce que j'aime. N'hésitez pas à me
-                contacter pour toutes questions que vous voudriez me poser.
-                Merci de visiter mon site.
-              </p>
-            </div>
-            <div className="social">
-              <GitHubIcon
-                onClick={() => window.open("https://github.com/SofianeBel")}
-                style={{ fontSize: 40 }}
-                sx={{ color: "purple" }}
-              />
-              <TwitterIcon
-                onClick={() => window.open("https://twitter.com/siflaieshin")}
-                style={{ fontSize: 40 }}
-                sx={{ color: "purple" }}
-              />
-            </div>
-
-            <div className="projects">
-              <h2>Mes Projets</h2>
-                <div className="project" onMouseOver={() => console.log("Hovered!")}></div>
-              <ul>
-                <li className="project">Prayer Times</li>
-                <p>
-                  Le projet consiste à utiliser une montre Natural Time et à
-                  l'utiliser pour indiquer le moment de la prière, car dans
-                  l'Islam, les prières sont définies par la direction du soleil
-                  et de la lune.
-                </p>
-                <li className="project">The HYDE BOT</li>
-                <p>
-                  Son objectif est de vous aider dans votre routine sur Discord.
-                </p>
-                <li className="project">Projet 3</li>
-              </ul>
-            </div>
-          </div>
-
-          <h2>Mes Qualités</h2>
-          <div className="skills">
-            <ul>
-              <li className="quality">Qualité 1</li>
-              <li className="quality">Qualité 2</li>
-              <li className="quality">Qualité 3</li>
-            </ul>
-          </div>
-
-          <h2>Me Contacter</h2>
-          <div className="contact">
-            <p>
-              Adresse e-mail : Sifly789@gmail.com
-              <br />
-              Numéro de téléphone : 0782620111
-            </p>
-          </div>
-        </main>
-        <footer>
-          <p>
-            © {new Date().getFullYear()} Sofiane's World. Tous droits réservés.
-          </p>
-        </footer>
+      <div className="menu">
+        <MenuSection />
+      </div>
+      <div className="min-h-screen flex flex-col">
+        <HeroSection textRef={textRef} text={text} isEnd={isEnd} />
+        <AboutSection />
+        <ProjectsSection />
+        <ContactSection />
       </div>
     </>
   );
-};
+}
+
+function HeroSection({ textRef, text, isEnd }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="h-screen flex items-center justify-center bg-gray-800 text-white"
+    >
+      <h1 className="text-4xl font-bold" ref={textRef}>
+        {text}
+        {isEnd ? "" : "|"}
+      </h1>
+    </motion.div>
+  );
+}
+
+function MenuSection() {
+  return <Menu />;
+}
+
+function AboutSection() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="py-16 px-4 bg-gray-200"
+    >
+      <h2 className="text-2xl font-bold mb-4">About Me</h2>
+      <p>
+        This is a short description about myself and my skills. I am a passionate
+        web developer with experience in React, JavaScript, and Tailwind CSS.
+      </p>
+    </motion.div>
+  );
+}
+
+function ProjectsSection() {
+  const projects = [
+    {
+      title: "Project 1",
+      description: "This is a description of Project 1.",
+    },
+    {
+      title: "Project 2",
+      description: "This is a description of Project 2.",
+    },
+  ];
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="py-16 px-4"
+    >
+      <h2 className="text-2xl font-bold mb-4">Projects</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {projects.map((project) => (
+          <ProjectCard key={project.title} {...project} />
+        ))}
+      </div>
+    </motion.div>
+  );
+}
+
+function ProjectCard({ title, description }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="rounded-lg shadow-md p-4 bg-gray-200"
+    >
+      <h3 className="text-xl font-bold mb-2">{title}</h3>
+      <p>{description}</p>
+    </motion.div>
+  );
+}
+
+function ContactSection() {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="py-16 px-4 bg-gray-800 text-white"
+    >
+      <h2 className="text-2xl font-bold mb-4">Contact Me</h2>
+      <p>
+        If you have any questions or would like to get in touch, please feel free
+        to contact me.
+      </p>
+    </motion.div>
+  );
+}
 
 export default HomePage;
