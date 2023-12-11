@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import "../Menu.css";
 
@@ -9,12 +9,26 @@ const DropdownMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const handleClickOutside = (event) => {
+    const menuElement = document.querySelector(".menu");
+    if (!menuElement.contains(event.target)) {
+      setIsMenuOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [isMenuOpen]);
+
   return (
     <nav className="menu">
       <button
         className={`menu-button ${isMenuOpen ? "open" : ""}`}
-        onClick={handleToggleMenu}
-      >
+        onClick={handleToggleMenu}>
         <span>Menu</span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -22,8 +36,7 @@ const DropdownMenu = () => {
           height="16"
           fill="currentColor"
           className="bi bi-chevron-down"
-          viewBox="0 0 16 16"
-        >
+          viewBox="0 0 16 16">
           <path
             fillRule="evenodd"
             d="M1.646.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L2.354 8.208a.5.5 0 0 1-.708-.708L1.646.646zM8 1a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-.5.5l-6 6a.5.5 0 0 1-.708-.708L7.293 8a.5.5 0 0 1 .708-.708L8 1a.5.5 0 0 1 .5-.5z"
